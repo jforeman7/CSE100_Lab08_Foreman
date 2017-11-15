@@ -70,6 +70,7 @@ void createGraph(int vertices, int edges)
 			rev[adjacent[i][j]].push_back(i);
 
 }
+
 int main() 
 {
 	int vertices = 0, edges = 0, comp;
@@ -96,6 +97,7 @@ int main()
 					arr[k] = *min_element(SCC[i].begin(), SCC[i].end());
 		}
 	}
+	
 	for (int i = 0; i < vertices; i++)
 		cout << arr[i] << endl;
 	return 0;
