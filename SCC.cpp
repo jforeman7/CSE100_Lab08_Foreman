@@ -20,11 +20,11 @@ vector< vector<int> > SCC;
 void DFS(vector<int> graph[], vector<int> &res, int i) 
 {
 	visit[i] = true;
+	
 	for (int j = 0; j < graph[i].size(); j++) 
-	{
 		if (!visit[graph[i][j]])
 			DFS(graph, res, graph[i][j]);
-	}
+	
 	res.push_back(i);
 }
 
@@ -35,6 +35,7 @@ void createSCC(int vertices)
 		visit[i] = false;
 
 	reverse(order.begin(), order.end());
+	
 	for (int i = 0; i < order.size(); i++) 
 	{
 		if (!visit[order[i]]) 
@@ -61,16 +62,12 @@ void createGraph(int vertices, int edges)
 		visit[i] = false;
 
 	for (int i = 0; i < vertices; i++) 
-	{
 		if (!visit[i])
 			DFS(adjacent, order, i);
-	}
 
 	for (int i = 0; i < vertices; i++) 
-	{
 		for (int j = 0; j < adjacent[i].size(); j++)
 			rev[adjacent[i][j]].push_back(i);
-	}
 
 }
 int main() 
@@ -82,9 +79,8 @@ int main()
 	int * arr = new int[vertices];
 
 	for (int i = 0; i < vertices; i++) 
-	{
 		arr[i] = i;
-	}
+	
 	createGraph(vertices, edges);
 
 	createSCC(vertices);
@@ -96,14 +92,11 @@ int main()
 			comp = SCC[i][j];
 
 			for (int k = 0; k < vertices; k++) 
-			{
 				if (arr[k] == comp) 
 					arr[k] = *min_element(SCC[i].begin(), SCC[i].end());
-			}
 		}
 	}
-	for (int i = 0; i < vertices; i++) {
+	for (int i = 0; i < vertices; i++)
 		cout << arr[i] << endl;
-	}
 	return 0;
 }
