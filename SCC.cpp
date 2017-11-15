@@ -9,10 +9,14 @@
 
 using namespace std;
 
+// Array to mark if visited or not.
 bool visit[101] = { 0 };
+
+// SCC structures.
 vector<int> adjacent[101], rev[101], order;
 vector< vector<int> > SCC;
 
+// Depth-First Search of the graph.
 void DFS(vector<int> graph[], vector<int> &res, int i) 
 {
 	visit[i] = true;
@@ -24,6 +28,7 @@ void DFS(vector<int> graph[], vector<int> &res, int i)
 	res.push_back(i);
 }
 
+// Initialize and create an SCC graph.
 void createSCC(int vertices)
 {
 	for (int i = 0; i < vertices; i++) 
@@ -41,6 +46,7 @@ void createSCC(int vertices)
 	}
 }
 
+// Create the graph structure.
 void createGraph(int vertices, int edges)
 {
 	int u, v;
